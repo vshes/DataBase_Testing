@@ -1,12 +1,16 @@
 package com.shesh.db.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 /**
  * Created by shesh on 5/23/17.
  */
+@Entity(name="HIB_STUDENT")
 public class Student {
 
+    @Id
     private String id;
     private String firstName;
     private String lastName;

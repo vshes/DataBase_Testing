@@ -12,5 +12,7 @@ public class DatabaseStarter {
         Logger logger = Logger.getLogger("MainLogger");
         logger.info("Process Starting.. ");
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("dbdemo");
+
+
     }
 }
