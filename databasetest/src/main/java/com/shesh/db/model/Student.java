@@ -15,7 +15,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String gender;
-    private String Address;
+    private String address;
 
     public String getId() {
         return id;
@@ -50,11 +50,11 @@ public class Student {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        this.address = address;
     }
 
     public Student() {
@@ -68,7 +68,7 @@ public class Student {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
-                ", Address='" + Address + '\'' +
+                ", Address='" + address + '\'' +
                 '}';
     }
 }

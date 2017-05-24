@@ -3,6 +3,7 @@ package com.shesh.db.service;
 import com.shesh.db.dao.StudentDao;
 import com.shesh.db.dao.StudentDaoImpl;
 import com.shesh.db.model.Student;
+import org.jboss.logging.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +38,7 @@ public class StudentServiceImpl implements  StudentService{
     }
 
     public Student create(Student student) {
-        System.out.println("IN Service !");
+        Logger.getLogger("Service-Log","SERVICE-LOG").debugf("",student.toString());
         if(student != null)
         return studentDao.create(student);
         else

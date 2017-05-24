@@ -21,7 +21,7 @@ public class StudentDaoImpl implements StudentDao {
     public StudentDaoImpl() throws IOException {
         Properties prop = DbUtil.getProp();
         emf = Persistence.createEntityManagerFactory("dbdemo", prop);
-        System.out.println("Constructor Called for DAO");
+
         this.logger = Logger.getLogger("DAO");
     }
     public Student findOne(String id) {
@@ -47,7 +47,6 @@ public class StudentDaoImpl implements StudentDao {
         this.em.persist(student);
         this.em.getTransaction().commit();
         logger.info("New object is created for : Student \t"+student.toString());
-
         return student;
 
     }
