@@ -7,7 +7,7 @@ import java.util.UUID;
 /**
  * Created by shesh on 5/23/17.
  */
-@Entity(name="HIB_STUDENT")
+@Entity
 public class Student {
 
     @Id

@@ -15,34 +15,51 @@ import java.util.logging.Logger;
  * Created by shesh on 5/23/17.
  */
 public class StudentDaoImpl implements StudentDao {
-    static EntityManagerFactory emf ;
-    Logger logger ;
-    EntityManager em;
+    private  EntityManagerFactory emf ;
+    private Logger logger ;
+    private EntityManager em;
+
     public StudentDaoImpl() throws IOException {
         Properties prop = DbUtil.getProp();
         emf = Persistence.createEntityManagerFactory("dbdemo", prop);
-
         this.logger = Logger.getLogger("DAO");
     }
     public Student findOne(String id) {
-        return null;
+        em = emf.createEntityManager();
+        return em.find(Student.class,id);
+
     }
 
     public List<Student> findAll() {
-        return null;
+
+        em = emf.createEntityManager();
+        return  em.createQuery("select s from Student as s",Student.class).getResultList();
+
     }
 
     public Student update(Student student) {
-        return null;
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.merge(student);
+        em.getTransaction().commit();
+        em.close();
+        return  student;
+
     }
 
-    public void delete(String id) {
-
+    public void delete(Student student) {
+        em = emf.createEntityManager();
+        em.getTransaction().begin();
+        em.remove(em.merge(student));
+        em.getTransaction().commit();
+        em.close();
+        System.out.println("deleted !");
     }
 
     public Student create(Student student) {
 
         this.em = emf.createEntityManager();
+
         this.em.getTransaction().begin();
         this.em.persist(student);
         this.em.getTransaction().commit();

@@ -33,7 +33,7 @@ public class StudentServiceImpl implements  StudentService{
         return studentDao.update(student);
     }
 
-    public void delete(String id) {
+    public void delete(Student id) {
         studentDao.delete(id);
     }
 

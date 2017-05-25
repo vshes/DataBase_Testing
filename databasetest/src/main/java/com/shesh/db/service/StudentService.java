@@ -12,6 +12,6 @@ public interface StudentService {
     Student findOne(String id);
     List<Student> findAll();
     Student update(Student student);
-    void delete(String id);
+    void delete(Student id);
     Student create(Student student);
 }
