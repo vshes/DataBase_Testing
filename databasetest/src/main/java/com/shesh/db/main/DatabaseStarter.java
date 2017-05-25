@@ -25,54 +25,60 @@ public class DatabaseStarter {
         for(Student student : studentList)studentService.create(student);
 
         logger.info("Created sample data");
-       
-        System.out.println("\t\t Select the Operation from Below");
-        System.out.println("\t\t**********************************");
-        System.out.println("\t\t 1. Find By Id");
-        System.out.println("\t\t 2. Update By Id");
-        System.out.println("\t\t 3. Delete By Id");
-        System.out.println("\t\t 4. quit");
-        System.out.println("\t\t**********************************");
-        System.out.println("\t\t Enter your choice ");
+
+
         Scanner scanner = new Scanner(System.in);
-        String choice = scanner.next();
+        String choice = "0";
         int findChoice = 0;
         HashMap<Integer,Student> studentMap = new HashMap<Integer, Student>();
         Student display = null;
         Student student = null;
 
-        while(choice !=  "4"){
+        do{
+
+
+           if(!choice.equals("4")){
+               System.out.println("\t\t Select the Operation from Below");
+               System.out.println("\t\t**********************************");
+               System.out.println("\t\t 1. Find By Id");
+               System.out.println("\t\t 2. Update By Id");
+               System.out.println("\t\t 3. Delete By Id");
+               System.out.println("\t\t 4. quit");
+               System.out.println("\t\t**********************************");
+               System.out.println("\t\t Enter your choice ");
+           }
+            choice = scanner.next();
             switch(Integer.parseInt(choice)){
 
                 case 1: List<Student> students =studentService.findAll();
-                        System.out.println("Select the Id from the list");
-                        int ctr = 1;
-                        for(Student s : students){
-                            studentMap.put(ctr,s);
-                            System.out.println("\t\t "+ctr+"\t"+s.getId());
-                            ctr+=1;
-                        }
-                        findChoice = scanner.nextInt();
-                        display = studentService.findOne(studentMap.get(findChoice).getId());
-                        System.out.println(display.toString());
-                        break;
+                    System.out.println("Select the Id from the list");
+                    int ctr = 1;
+                    for(Student s : students){
+                        studentMap.put(ctr,s);
+                        System.out.println("\t\t "+ctr+"\t"+s.getId());
+                        ctr+=1;
+                    }
+                    findChoice = Integer.parseInt(scanner.next());
+                    display = studentService.findOne(studentMap.get(findChoice).getId());
+                    System.out.println(display.toString());
+                    break;
                 case 2:
                     System.out.println("\t\t Updating the Object with id"+studentMap.get(findChoice).getId());
-                        System.out.println("Update the fields :");
-                        //1scanner.next();
-                        System.out.println("firstname :");
-                        String fName  = scanner.nextLine();
-                        System.out.println("lastname :");
-                        String lastName = scanner.nextLine();
-                        System.out.println("address :");
-                        String address  = scanner.nextLine();
-                        student = studentService.findOne(studentMap.get(findChoice).getId());
-                        student.setFirstName(fName);
-                        student.setLastName(lastName);
-                        student.setAddress(address);
-                        Student res = studentService.update(student);
-                        System.out.println("\t\t Updated :"+res.toString());
-                        break;
+                    System.out.println("Update the fields :");
+                    scanner.nextLine();
+                    System.out.println("firstname :");
+                    String fName  = scanner.nextLine();
+                    System.out.println("lastname :");
+                    String lastName = scanner.nextLine();
+                    System.out.println("address :");
+                    String address  = scanner.nextLine();
+                    student = studentService.findOne(studentMap.get(findChoice).getId());
+                    student.setFirstName(fName);
+                    student.setLastName(lastName);
+                    student.setAddress(address);
+                    Student res = studentService.update(student);
+                    System.out.println("\t\t Updated :"+res.toString());
+                    break;
                 case 3:
                     System.out.println("Now deleting Object : "+studentMap.get(findChoice).getId());
                     //1findChoice = scanner.nextInt();
@@ -85,17 +91,12 @@ public class DatabaseStarter {
                     System.out.println("\t\t Process Complete");
                     System.out.println("\t\t***************");
                     break;
-                 default:
-                     break;
+                default:
+                    break;
 
             }
-            System.out.println("\t\t**********************************");
-            System.out.println("\t\t 1. Find By Id");
-            System.out.println("\t\t 2. Update By Id");
-            System.out.println("\t\t 3. Delete By Id");
-            System.out.println("\t\t 4. quit");
-            System.out.println("\t\t**********************************");
-            choice = scanner.next();
-        }
+
+        }while(choice !=  "4");
+
     }
 }
